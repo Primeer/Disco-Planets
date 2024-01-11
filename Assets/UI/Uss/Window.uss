@@ -1,0 +1,82 @@
+:root {
+    --window-border-radius: 30px;
+    --window-color-2: rgb(58, 50, 166);
+}
+
+.window-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.window-panel {
+    background-color: rgb(146, 200, 255);
+    border-color: white;
+    border-width: 1px;
+    border-radius: var(--window-border-radius);
+    align-items: center;
+    justify-content: space-between;
+    width: 740px;
+    height: 1110px;
+    border-left-color: rgb(203, 199, 255);
+    border-right-color: rgb(203, 199, 255);
+    border-top-color: rgb(203, 199, 255);
+    border-bottom-color: rgb(203, 199, 255);
+}
+
+.window-header {
+    width: 100%;
+    height: 15%;
+    background-color: var(--window-color-2);
+    border-top-left-radius: var(--window-border-radius);
+    border-top-right-radius: var(--window-border-radius);
+    justify-content: center;
+}
+
+.window-title {
+    -unity-font: url('project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&guid=c3eadac2d2d5947499e3e00b38c89265&type=3#NyashaSans');
+    -unity-text-align: upper-center;
+    font-size: 57px;
+    color: rgb(255, 208, 137);
+    -unity-font-definition: url('project://database/Assets/UI/Fonts/NyashaSans%20SDF%201.asset?fileID=11400000&guid=88caf3086a2cf5f4db3cab26d3405508&type=2#NyashaSans SDF 1');
+}
+
+.window-button {
+    -unity-font: url('project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&guid=c3eadac2d2d5947499e3e00b38c89265&type=3#NyashaSans');
+    -unity-font-definition: initial;
+    background-color: rgb(255, 208, 137);
+    border-radius: 20px;
+    border-width: 1px;
+    width: 350px;
+    align-self: center;
+    font-size: 34px;
+    color: var(--window-color-2);
+    border-color: var(--window-color-2);
+    margin-bottom: 15%;
+}
+
+.window-button:active {
+    -unity-font: url('project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&guid=c3eadac2d2d5947499e3e00b38c89265&type=3#NyashaSans');
+    -unity-font-definition: initial;
+    background-color: rgb(166, 117, 45);
+    border-radius: 20px;
+    border-width: 1px;
+    width: 350px;
+    align-self: center;
+    font-size: 34px;
+    color: var(--window-color-2);
+    border-color: var(--window-color-2);
+    margin-bottom: 15%;
+}
+
+.window-text-body {
+    -unity-font: url('project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&guid=c3eadac2d2d5947499e3e00b38c89265&type=3#NyashaSans');
+    font-size: 36px;
+    color: rgb(58, 50, 166);
+    -unity-font-definition: url('project://database/Assets/UI/Fonts/NyashaSans%20SDF%201.asset?fileID=11400000&guid=88caf3086a2cf5f4db3cab26d3405508&type=2#NyashaSans SDF 1');
+    white-space: normal;
+}

@@ -1,0 +1,54 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="WinWindow" src="project://database/Assets/UI/Uxml/WinWindow.uxml?fileID=9197481963319205126&amp;guid=b5d61d3ef74d8d0409b4aa0623687595&amp;type=3#WinWindow" />
+    <Style src="project://database/Assets/UI/Uss/Common.uss?fileID=7433441132597879392&amp;guid=f7a6c339e6e862647a940f7bd3572320&amp;type=3#Common" />
+    <ui:VisualElement name="panel_root" style="flex-grow: 1;">
+        <ui:VisualElement picking-mode="Ignore" name="panel_top" style="transform-origin: top; flex-direction: row; height: 15%; justify-content: space-between;">
+            <ui:VisualElement name="VisualElement" style="width: 50%;">
+                <ui:VisualElement name="panel_level" picking-mode="Ignore" style="transform-origin: left top; flex-direction: row; flex-grow: 1;">
+                    <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_level" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); font-size: 94px; color: rgb(255, 255, 255); -unity-text-align: middle-center; background-image: url(&apos;project://database/Assets/Art/Sprites/UI/space-level.png?fileID=21300000&amp;guid=c14cf776d1dc6e04e8ac1405465533ed&amp;type=3#space-level&apos;); -unity-background-scale-mode: scale-to-fit; -unity-font-definition: initial; -unity-text-outline-color: rgb(0, 0, 0); -unity-text-outline-width: 1px; flex-grow: 2; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;" />
+                    <ui:VisualElement name="panel_scors" style="flex-grow: 3; align-self: center; justify-content: center; flex-direction: column; align-items: stretch;">
+                        <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_score" class="text-score" />
+                        <ui:VisualElement name="panel_best_score" style="flex-direction: row;">
+                            <ui:Label tabindex="-1" text="BEST" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_best" style="flex-grow: 1; font-size: 34px; color: rgb(129, 221, 219); -unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; -unity-text-align: middle-center; -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-right: -20px; margin-left: 0;" />
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_best_score" style="flex-grow: 3; font-size: 34px; background-color: rgb(129, 221, 219); -unity-background-scale-mode: scale-to-fit; -unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; -unity-text-align: middle-center; border-top-left-radius: 12px; border-top-right-radius: 12px; border-bottom-right-radius: 12px; border-bottom-left-radius: 12px; color: rgb(255, 255, 255); -unity-text-outline-width: 1px; -unity-text-outline-color: rgb(0, 0, 0); padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="panel_progressbar_count" picking-mode="Ignore" class="progress-bar-balls--container" style="display: none;">
+                    <ui:VisualElement name="panel_progressbar_count_filler" picking-mode="Ignore" class="progress-bar-balls--filler" />
+                    <ui:VisualElement picking-mode="Ignore" style="flex-shrink: 0; position: absolute; width: 100%; height: 100%;">
+                        <ui:Label text="5/20" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_progressbar_count" picking-mode="Ignore" class="progress-bar-balls--text" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="panel_progressbar_time" picking-mode="Ignore" class="progress-bar-time--container" style="display: none;">
+                    <ui:VisualElement name="panel_progressbar_time_filler" picking-mode="Ignore" class="progress-bar-time--filler" />
+                    <ui:VisualElement picking-mode="Ignore" style="flex-shrink: 0; position: absolute; width: 100%; height: 100%;">
+                        <ui:Label text="10" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_progressbar_time" picking-mode="Ignore" class="progress-bar-balls--text" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_vibration" class="toggle-vibration-off" />
+        </ui:VisualElement>
+        <ui:VisualElement name="panel_debug" picking-mode="Ignore" style="flex-direction: column; justify-content: space-between; position: absolute; top: 400px; display: none;">
+            <ui:Button text="Next Level" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_debug_next_level" style="width: 150px; height: 150px; font-size: 36px; white-space: normal; -unity-font-style: bold; -unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; background-color: rgb(179, 30, 30); border-top-left-radius: 45px; border-top-right-radius: 45px; border-bottom-right-radius: 45px; border-bottom-left-radius: 45px;" />
+            <ui:Button text="Clear Prefs" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_debug_clear_prefs" style="width: 150px; height: 150px; font-size: 32px; white-space: normal; -unity-font-style: bold; -unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; background-color: rgb(179, 30, 30); border-top-left-radius: 45px; border-top-right-radius: 45px; border-bottom-right-radius: 45px; border-bottom-left-radius: 45px;" />
+            <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" picking-mode="Ignore" name="text_debug" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; font-size: 32px; display: none;" />
+            <ui:IntegerField label="VIbro" value="42" name="field_debug" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="panel_boosters" picking-mode="Ignore" style="flex-direction: row; justify-content: space-between; top: 50%;">
+            <ui:VisualElement name="panel_booster_1" class="panel-booster">
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_booster_1" class="button-booster">
+                    <ui:Label tabindex="-1" text="2" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_booster_counter_1" class="text-booster-counter" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement name="panel_booster_2" class="panel-booster">
+                <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_booster_2" class="button-booster">
+                    <ui:Label tabindex="-1" text="2" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_booster_counter_2" class="text-booster-counter" />
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="window" picking-mode="Ignore" style="justify-content: center; align-items: center; position: absolute; left: 0; top: 0; width: 100%; height: 100%;">
+            <ui:Instance template="WinWindow" name="WinWindow" class="window" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

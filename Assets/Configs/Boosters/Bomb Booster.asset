@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61dad1af44e24062ba7475c663aac6e8, type: 3}
+  m_Name: Bomb Booster
+  m_EditorClassIdentifier: 
+  radius: 1
+  force: 15
+  value: 1
+  bombPrefab: {fileID: 8389550267770075594, guid: e9b33811d70bf8d4c837f1d2302399cd,
+    type: 3}
+  bombEffectPrefab: {fileID: 3015420651021487513, guid: 57d998ee74cc15246a9739ed9aba7e84,
+    type: 3}
