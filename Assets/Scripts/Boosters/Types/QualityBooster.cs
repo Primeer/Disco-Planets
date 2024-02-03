@@ -23,29 +23,35 @@ namespace Boosters.Types
         {
             counter = config.Count;
 
-            modifiers.ValueMod += config.Value;
+            // modifiers.ValueMod += config.Value;
+            modifiers.FixValue += config.Value;
+            modifiers.IsFixValue = true;
             throwerModel.BallCreated += OnBallCreate;
             
-            boosterView.SetCounterText(Index, config.Count, true);
+            boosterView.SetButtonText(Index, config.Count.ToString());
+            
+            throwerModel.SpawnBall();
         }
 
         private void OnBallCreate(BallView view)
         {
             counter--;
             
-            boosterView.SetCounterText(Index, counter, true);
+            boosterView.SetButtonText(Index, counter.ToString());
 
             if (counter == 0)
             {
-                Deactivate();
+                OnDeactivate();
             }
         }
 
-        private void Deactivate()
+        protected override void OnDeactivate()
         {
-            boosterView.SetCounterText(Index, 0, false);
+            boosterView.SetButtonText(Index, "");
             
-            modifiers.ValueMod -= config.Value;
+            // modifiers.ValueMod -= config.Value;
+            modifiers.IsFixValue = false;
+            modifiers.FixValue -= config.Value;
             throwerModel.BallCreated -= OnBallCreate;
 
             Finish();

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 408571c6224d4a15b1f9cefef7d71b22, type: 3}
   m_Name: Quality Booster
   m_EditorClassIdentifier: 
-  count: 5
+  count: 4
   value: 1

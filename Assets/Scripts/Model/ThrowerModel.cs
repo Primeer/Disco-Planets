@@ -81,7 +81,10 @@ namespace Model
                 ballFactory.DestroyBall(ball);
             }
 
-            int ballValue = Random.Range(minValue + modifiers.ValueMod, maxValue + modifiers.ValueMod);
+            var ballValue = modifiers.IsFixValue
+                ? maxValue + modifiers.FixValue - 1
+                : Random.Range(minValue + modifiers.ValueMod, maxValue + modifiers.ValueMod);
+            
             ball = ballFactory.CreateThrowerBall(ballValue);
             
             BallCreated?.Invoke(ball);

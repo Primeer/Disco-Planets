@@ -5,7 +5,7 @@
     /// </summary>
     public enum BoosterState
     {
-        Cooldown,
+        Disabled,
         Ready,
         Active,
     }

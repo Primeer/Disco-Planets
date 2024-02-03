@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Window.uss?fileID=7433441132597879392&amp;guid=cbdef2d237097604cb6d8d40355671fd&amp;type=3#Window" />
+    <ui:VisualElement name="overlay" style="position: absolute; left: 0; top: 0; align-items: center; justify-content: center; width: 100%; height: 100%;">
+        <ui:VisualElement name="background" class="window-background">
+            <ui:VisualElement name="panel" picking-mode="Ignore" class="window-panel">
+                <ui:VisualElement name="panel_header" picking-mode="Ignore" class="window-header">
+                    <ui:Label tabindex="-1" text="Level completed!!!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_title" picking-mode="Ignore" class="window-title" />
+                </ui:VisualElement>
+                <ui:VisualElement name="panel_body" style="align-items: center; justify-content: space-around; flex-grow: 1; width: 100%;">
+                    <ui:VisualElement name="panel_scores" style="width: 60%; justify-content: center;">
+                        <ui:Label tabindex="-1" text="Score: 123" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_score" picking-mode="Ignore" class="window-text-body" />
+                        <ui:Label tabindex="-1" text="Best score: 123" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_best_score" picking-mode="Ignore" class="window-text-body" />
+                    </ui:VisualElement>
+                    <ui:Label tabindex="-1" text="This is the last level. &#10;Look forward to the next levels in future updates" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_message" picking-mode="Ignore" class="window-text-body" style="-unity-text-align: middle-center; display: none; background-color: rgb(203, 199, 255); border-top-left-radius: 30px; border-top-right-radius: 30px; border-bottom-right-radius: 30px; border-bottom-left-radius: 30px; margin-bottom: 45px;" />
+                </ui:VisualElement>
+                <ui:Button text="Continue" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_continue" class="window-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

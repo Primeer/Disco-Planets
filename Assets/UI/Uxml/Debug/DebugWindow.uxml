@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Window.uss?fileID=7433441132597879392&amp;guid=cbdef2d237097604cb6d8d40355671fd&amp;type=3#Window" />
+    <ui:VisualElement name="overlay" style="position: absolute; left: 0; top: 0; align-items: center; justify-content: center; width: 100%; height: 100%;">
+        <ui:VisualElement name="background" class="window-background">
+            <ui:VisualElement name="panel" picking-mode="Ignore" class="window-panel">
+                <ui:ListView focusable="true" name="list" style="flex-grow: 1;" />
+                <ui:VisualElement style="flex-grow: 1; margin-bottom: 15%;">
+                    <ui:Button text="Continue" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_continue" class="window-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

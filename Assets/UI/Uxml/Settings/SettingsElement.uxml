@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Window.uss?fileID=7433441132597879392&amp;guid=cbdef2d237097604cb6d8d40355671fd&amp;type=3#Window" />
+    <ui:Button text="как играть" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_element" class="window-title" style="background-color: rgb(58, 50, 166); border-top-left-radius: 25px; border-top-right-radius: 25px; border-bottom-right-radius: 25px; border-bottom-left-radius: 25px; border-top-width: 0; border-right-width: 0; border-bottom-width: 0; border-left-width: 0; font-size: 34px; -unity-text-align: middle-center; height: 100px; width: 100%;" />
+</ui:UXML>

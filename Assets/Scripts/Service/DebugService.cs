@@ -11,14 +11,14 @@ namespace Service
             Debug.Log(text);
             
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
-            DebugButtonsView.SetDebugText(message);
+            DebugView.SetDebugText(message);
 #endif
         }
 
         public static int GetDebugValue()
         {
 #if DEVELOPMENT_BUILD || UNITY_EDITOR
-            return DebugButtonsView.GetDebugValue();
+            return DebugView.GetDebugValue();
 #endif
             return -1;
         }

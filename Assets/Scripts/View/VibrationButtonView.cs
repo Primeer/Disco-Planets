@@ -15,7 +15,7 @@ namespace View
         [SerializeField] private UIDocument document;
 
         private Button button;
-        private bool state;
+        private bool state = true;
 
         public Action<bool> VibrationButtonClicked;
         

@@ -12,6 +12,7 @@ namespace Model
         
         public Action<int> ScoreChanged;
         public Action<int> BestScoreChanged;
+        public Action ScoreReset;
 
         
         public void AddScore(int value)
@@ -31,6 +32,12 @@ namespace Model
         {
             BestScore = score;
             BestScoreChanged?.Invoke(BestScore);
+        }
+
+        public void ResetScore()
+        {
+            Score = 0;
+            ScoreReset?.Invoke();
         }
     }
 }

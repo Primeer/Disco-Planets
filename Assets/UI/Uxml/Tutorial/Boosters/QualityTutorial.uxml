@@ -1,0 +1,34 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Window.uss?fileID=7433441132597879392&amp;guid=cbdef2d237097604cb6d8d40355671fd&amp;type=3#Window" />
+    <Style src="project://database/Assets/UI/Uss/Tutorial.uss?fileID=7433441132597879392&amp;guid=7909917b42a45df41932ef1a757a33ef&amp;type=3#Tutorial" />
+    <ui:VisualElement name="overlay" style="position: absolute; left: 0; top: 0; align-items: center; justify-content: center; width: 100%; height: 100%;">
+        <ui:VisualElement name="background" class="window-background">
+            <ui:VisualElement name="panel" picking-mode="Ignore" class="window-panel">
+                <ui:VisualElement name="panel_header" picking-mode="Ignore" class="window-header">
+                    <ui:Label tabindex="-1" text="Улучшение планет" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_title" picking-mode="Ignore" class="window-title" />
+                </ui:VisualElement>
+                <ui:VisualElement name="panel_body" style="align-items: center; justify-content: center; flex-grow: 1; width: 100%;">
+                    <ui:VisualElement class="booster-icon" style="background-image: url(&apos;project://database/Assets/Art/Sprites/UI/Boosters/icon_booster_quality.png?fileID=21300000&amp;guid=e5fcb13416aa7a24f81afeb086d23817&amp;type=3#icon_booster_quality&apos;);" />
+                    <ui:Label tabindex="-1" text="Увеличивает уровень планет, которыми стреляет игрок" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_message" class="window-text-body booster-description" />
+                    <ui:VisualElement style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(58, 50, 166); border-right-color: rgb(58, 50, 166); border-top-color: rgb(58, 50, 166); border-bottom-color: rgb(58, 50, 166); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; margin-bottom: 15px; width: 400px;">
+                        <ui:Label tabindex="-1" text="без улучшения" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_before" class="window-text-body" style="-unity-text-align: upper-center;" />
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-around;">
+                            <ui:VisualElement class="ball-image" style="background-image: url(&apos;project://database/Assets/Art/Sprites/Game/Balls/2.png?fileID=21300000&amp;guid=6a04ae2b915a9884ca8af2498e0b608c&amp;type=3#2&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                            <ui:VisualElement class="ball-image" style="background-image: url(&apos;project://database/Assets/Art/Sprites/Game/Balls/3.png?fileID=21300000&amp;guid=80447bc93a82445498e1e3533fca66ee&amp;type=3#3&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                            <ui:VisualElement class="ball-image" style="background-image: url(&apos;project://database/Assets/Art/Sprites/Game/Balls/4.png?fileID=21300000&amp;guid=af48636fa2645024298ee4a9beabe245&amp;type=3#4&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:VisualElement style="border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(58, 50, 166); border-right-color: rgb(58, 50, 166); border-top-color: rgb(58, 50, 166); border-bottom-color: rgb(58, 50, 166); border-top-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; border-bottom-left-radius: 20px; width: 400px;">
+                        <ui:Label tabindex="-1" text="с улучшением" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_after" class="window-text-body" style="-unity-text-align: upper-center;" />
+                        <ui:VisualElement style="flex-direction: row; justify-content: space-around;">
+                            <ui:VisualElement class="ball-image" style="background-image: url(&apos;project://database/Assets/Art/Sprites/Game/Balls/5.png?fileID=21300000&amp;guid=387d9d0f4fe169b4dac8e8d7f3d7af0c&amp;type=3#5&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement style="margin-bottom: 15%; margin-top: 10px;">
+                    <ui:Button text="Continue" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_continue" class="window-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

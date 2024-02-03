@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -11,96 +10,139 @@ namespace View
     /// </summary>
     public class BoosterView : MonoBehaviour
     {
+        private const string PanelName = "panel_booster";
+        private const string ButtonName = "button_booster";
+        private const string PanelActivatedClass = "panel-booster-activated";
+        private const string PanelDisabledClass = "panel-booster-disabled";
+        private const string ButtonActivatedClass = "button-booster-activated";
+        private const string ButtonDisabledClass = "button-booster-disabled";
+        private const string ButtonAdClass = "button-booster-ad";
+        
         [SerializeField] private UIDocument document;
 
-        private Button button1;
-        private Button button2;
-        private Label counterText1;
-        private Label counterText2;
+        private VisualElement[] panels;
+        private Button[] buttons;
 
         public Action<int> ButtonClicked;
-
-        public void SetButtonActive(int index, bool isActive)
+        
+        public void ShowBooster(int index, bool isVisible)
         {
-            (index == 0 ? button1 : button2).SetEnabled(isActive);
+            panels[index].style.display = isVisible ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        public void SetButtonEnabled(int index, bool isEnabled)
+        {
+            var button = buttons[index];
+            button.SetEnabled(isEnabled);
+
+            var state = isEnabled ? ElementState.None : ElementState.Disabled;
+            SetPanelState(index, state);
+            SetButtonState(index, state);
         }
         
         public void SetButtonSprite(int index, Sprite sprite)
         {
-            (index == 0 ? button1 : button2).style.backgroundImage = new StyleBackground(sprite);
+            buttons[index].style.backgroundImage = new StyleBackground(sprite);
         }
         
-        public void SetCounterText(int index, float value, bool isVisible, string format = "")
+        public void SetButtonText(int index, string text)
         {
-            var text = index == 0 ? counterText1 : counterText2;
-            text.text = value.ToString(format);
-            text.style.visibility = isVisible ? Visibility.Visible : Visibility.Hidden;
+            buttons[index].text = text;
         }
-        
-        public async UniTaskVoid SetCooldownTextAsync(int index, float cooldown, CancellationToken token)
-        {
-            try
-            {
-                var counter = cooldown;
 
-                while (counter > 0)
-                {
-                    await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken: token);
-                    SetCounterText(index, counter, true, "0.0");
-                    counter -= Time.deltaTime;
-                }
-            }
-            catch (OperationCanceledException) { }
-            catch (Exception e)
-            {
-                Debug.LogError(e);
-            }
-            finally
-            {
-                SetCounterText(index, 0f, false);
-            }
+        public void SetAd(int index, bool isEnabled)
+        {
+            var state = isEnabled ? ElementState.Ad : ElementState.None;
+            SetPanelState(index, state);
+            SetButtonState(index, state);
+            SetButtonText(index, isEnabled ? "ad" : "");
         }
 
         public void SetBoosterActivated(int index, bool isActive)
         {
-            if (isActive)
+            var state = isActive ? ElementState.Activated : ElementState.None;
+            SetButtonState(index, state);
+            SetPanelState(index, state);
+        }
+
+        private void SetButtonState(int index, ElementState state)
+        {
+            var button = buttons[index];
+            
+            switch (state)
             {
-                (index == 0 ? button1 : button2).AddToClassList("button-booster-activated");
+                case ElementState.None:
+                    button.RemoveFromClassList(ButtonActivatedClass);
+                    button.RemoveFromClassList(ButtonDisabledClass);
+                    button.RemoveFromClassList(ButtonAdClass);
+                    break;
+                case ElementState.Disabled:
+                    button.AddToClassList(ButtonDisabledClass);
+                    button.RemoveFromClassList(ButtonActivatedClass);
+                    button.RemoveFromClassList(ButtonAdClass);
+                    break;
+                case ElementState.Activated:
+                    button.AddToClassList(ButtonActivatedClass);
+                    button.RemoveFromClassList(ButtonDisabledClass);
+                    button.RemoveFromClassList(ButtonAdClass);
+                    break;
+                case ElementState.Ad:
+                    button.AddToClassList(ButtonAdClass);
+                    button.RemoveFromClassList(ButtonActivatedClass);
+                    button.RemoveFromClassList(ButtonDisabledClass);
+                    break;
             }
-            else
+        }
+        
+        private void SetPanelState(int index, ElementState state)
+        {
+            var panel = panels[index];
+            
+            switch (state)
             {
-                (index == 0 ? button1 : button2).RemoveFromClassList("button-booster-activated");
+                case ElementState.None:
+                    panel.RemoveFromClassList(PanelActivatedClass);
+                    panel.RemoveFromClassList(PanelDisabledClass);
+                    break;
+                case ElementState.Ad:
+                case ElementState.Disabled:
+                    panel.AddToClassList(PanelDisabledClass);
+                    panel.RemoveFromClassList(PanelActivatedClass);
+                    break;
+                case ElementState.Activated:
+                    panel.AddToClassList(PanelActivatedClass);
+                    panel.RemoveFromClassList(PanelDisabledClass);
+                    break;
             }
+        }
+
+        private void HideBoosters()
+        {
+            panels.ToList().ForEach(panel => panel.style.display = DisplayStyle.None);
         }
 
         private void OnEnable()
         {
             VisualElement root = document.rootVisualElement;
-
-            button1 = root.Q<Button>("button_booster_1");
-            button2 = root.Q<Button>("button_booster_2");
             
-            counterText1 = root.Q<Label>("text_booster_counter_1");
-            counterText2 = root.Q<Label>("text_booster_counter_2");
+            panels = root.Query<VisualElement>(PanelName).Build().ToArray();
+            buttons = root.Query<Button>(ButtonName).Build().ToArray();
+
+            for (var i = 0; i < buttons.Length; i++)
+            {
+                var index = i;
+                buttons[i].RegisterCallback<ClickEvent>(e => ButtonClicked?.Invoke(index));
+            }
             
-            button1.clicked += OnButton1Click;
-            button2.clicked += OnButton2Click;
+            HideBoosters();
         }
+    }
 
-        private void OnDisable()
-        {
-            button1.clicked -= OnButton1Click;
-            button2.clicked -= OnButton2Click;
-        }
-
-        private void OnButton1Click()
-        {
-            ButtonClicked?.Invoke(0);
-        }
-
-        private void OnButton2Click()
-        {
-            ButtonClicked?.Invoke(1);
-        }
+    public enum ElementState
+    {
+        None,
+        Disabled,
+        Activated,
+        Ad,
     }
 }

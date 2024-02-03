@@ -1,67 +1,156 @@
 ﻿using System;
-using System.Threading;
+using System.Collections.Generic;
+using Boosters;
 using Boosters.Configs;
 using Model;
+using Service;
+using Service.Features;
+using UnityEngine;
 using VContainer.Unity;
 using View;
 
 namespace Presenter
 {
-    public class BoosterPresenter : IInitializable, IDisposable
+    public class BoosterPresenter : IInitializable, IStartable, IDisposable
     {
         private readonly BoosterModel model;
         private readonly BoosterView view;
-
-        private CancellationTokenSource[] cooldownTextCts = new CancellationTokenSource[2];
-
-        public BoosterPresenter(BoosterModel model, BoosterView view)
+        private readonly TutorialService tutorialService;
+        private readonly VibrationService vibrationService;
+        private readonly Dictionary<BoosterType, BoosterData> boosterData;
+        private readonly int boostersCount;
+        
+        public BoosterPresenter(BoosterModel model, BoosterView view, BoostersConfig config, 
+            TutorialService tutorialService, VibrationService vibrationService)
         {
             this.model = model;
             this.view = view;
+            this.tutorialService = tutorialService;
+            this.vibrationService = vibrationService;
+            boosterData = config.Boosters;
+            boostersCount = config.Boosters.Count;
         }
 
         public void Initialize()
         {
-            model.BoosterChanged += OnBoosterChanged;
+            model.BoosterReset += OnBoosterReset;
             model.BoosterReady += OnBoosterReady;
-            model.BoosterActivated += OnBoosterActivated;
-            view.ButtonClicked += model.ActivateBooster;
+            view.ButtonClicked += OnBoosterClicked;
+            EventBus.LevelChanged += OnLevelChanged;
+            EventBus.FeatureOpened += OnFeatureOpened;
+        }
+
+        public void Start()
+        {
+            model.InitializeBoosters();
         }
 
         public void Dispose()
         {
-            model.BoosterChanged -= OnBoosterChanged;
+            model.BoosterReset -= OnBoosterReset;
             model.BoosterReady -= OnBoosterReady;
-            model.BoosterActivated -= OnBoosterActivated;
-            view.ButtonClicked -= model.ActivateBooster;
+            view.ButtonClicked -= OnBoosterClicked;
+            EventBus.LevelChanged -= OnLevelChanged;
+            EventBus.FeatureOpened -= OnFeatureOpened;
+            
+            model.Dispose();
+        }
 
-            for (var i = 0; i < cooldownTextCts.Length; i++)
+        private void OnLevelChanged(int _)
+        {
+            model.ResetAllBoosters();
+            model.EnableAllBoosters();
+        }
+
+        private void OnFeatureOpened(FeatureEnum feature)
+        {
+            var type = GetBoosterByFeature(feature);
+
+            if (type is { } boosterType)
             {
-                cooldownTextCts[i]?.Cancel();
-                cooldownTextCts[i]?.Dispose();
-                cooldownTextCts[i] = null;
+                view.ShowBooster((int)boosterType, true);
+                tutorialService.ShowBoosterTutorial(boosterData[boosterType].tutorialWindow);
             }
         }
 
-        private void OnBoosterChanged(int index, BoosterData data, float cooldown)
+        private void OnBoosterReset(BoosterType type)
         {
-            view.SetButtonSprite(index, data.sprite);
-            view.SetButtonActive(index, false);
+            int index = (int)type;
+            
+            view.SetButtonSprite(index, boosterData[type].sprite);
+            UnlockButtons();
             view.SetBoosterActivated(index, false);
-
-            cooldownTextCts[index]?.Cancel();
-            cooldownTextCts[index] = new CancellationTokenSource();
-            view.SetCooldownTextAsync(index, cooldown, cooldownTextCts[index].Token).Forget();
+            view.SetAd(index, true);
         }
 
-        private void OnBoosterReady(int index)
+        private void OnBoosterReady(BoosterType type)
         {
-            view.SetButtonActive(index, true);
+            view.SetAd((int)type, false);
         }
 
-        private void OnBoosterActivated(int index)
+        private void OnBoosterClicked(int index)
         {
-            view.SetBoosterActivated(index, true);
+            vibrationService.PlayVibration();
+            
+            var type = (BoosterType)index;
+            var state = model.GetBoosterState(type);
+            
+            switch (state)
+            {
+                case BoosterState.Disabled:
+                    Debug.Log("ShowAd");
+                    model.EnableAllBoosters();
+                    break;
+                case BoosterState.Ready:
+                    Debug.Log($"Activate booster: {type.ToString()}");
+                    LockButtons(index);
+                    ActivateBooster(type);
+                    break;
+            }
+        }
+        
+        private void ActivateBooster(BoosterType type)
+        {
+            view.SetBoosterActivated((int)type, true);
+            model.ActivateBooster(type);
+        }
+
+        private void LockButtons(int exIndex)
+        {
+            for (int i = 0; i < boostersCount; i++)
+            {
+                if (i == exIndex)
+                {
+                    continue;
+                }
+                
+                view.SetButtonEnabled(i, false);
+            }
+        }
+        
+        private void UnlockButtons()
+        {
+            for (int i = 0; i < boostersCount; i++)
+            {
+                view.SetButtonEnabled(i, true);
+                
+                if (model.GetBoosterState((BoosterType)i) == BoosterState.Disabled)
+                {
+                    view.SetAd(i, true);
+                }
+            }
+        }
+
+        private BoosterType? GetBoosterByFeature(FeatureEnum feature)
+        {
+            return feature switch
+            {
+                FeatureEnum.BoosterMax => BoosterType.Max,
+                FeatureEnum.BoosterBomb => BoosterType.Bomb,
+                FeatureEnum.BoosterQuality => BoosterType.Quality,
+                FeatureEnum.BoosterMagnet => BoosterType.Magnet,
+                _ => null
+            };
         }
     }
 }

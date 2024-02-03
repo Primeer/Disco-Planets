@@ -1,0 +1,26 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Window.uss?fileID=7433441132597879392&amp;guid=cbdef2d237097604cb6d8d40355671fd&amp;type=3#Window" />
+    <ui:VisualElement name="overlay" style="position: absolute; left: 0; top: 0; align-items: center; justify-content: center; width: 100%; height: 100%;">
+        <ui:VisualElement name="background" class="window-background">
+            <ui:VisualElement name="panel" picking-mode="Ignore" class="window-panel">
+                <ui:VisualElement name="panel_header" picking-mode="Ignore" class="window-header">
+                    <ui:Label tabindex="-1" text="how to merge" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_title" picking-mode="Ignore" class="window-title" />
+                </ui:VisualElement>
+                <ui:VisualElement name="panel_body" style="align-items: center; justify-content: center; flex-grow: 1; width: 100%;">
+                    <ui:Label tabindex="-1" text="Collide planets and get improved ones" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_message_1" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; font-size: 37px; white-space: normal; -unity-text-align: upper-center; color: rgb(58, 50, 166);" />
+                    <ui:VisualElement name="panel_scores" style="flex-direction: row; align-items: center;">
+                        <ui:VisualElement style="flex-grow: 1; width: 150px; height: 150px; background-image: url(&apos;project://database/Assets/Art/Sprites/Game/Balls/2.png?fileID=21300000&amp;guid=6a04ae2b915a9884ca8af2498e0b608c&amp;type=3#2&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:Label tabindex="-1" text="+" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; -unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; font-size: 99px; color: rgb(58, 50, 166);" />
+                        <ui:VisualElement style="flex-grow: 1; width: 150px; height: 150px; background-image: url(&apos;project://database/Assets/Art/Sprites/Game/Balls/2.png?fileID=21300000&amp;guid=6a04ae2b915a9884ca8af2498e0b608c&amp;type=3#2&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:Label tabindex="-1" text="-&gt;" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; -unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; font-size: 62px; color: rgb(58, 50, 166); display: none;" />
+                        <ui:VisualElement style="flex-grow: 1; width: 180px; height: 100px; background-image: url(&apos;project://database/Assets/Art/Sprites/UI/Tutorial/image_merge_balls.png?fileID=21300000&amp;guid=7eda09842bc0c614b9dab5934449ed60&amp;type=3#image_merge_balls&apos;); -unity-background-scale-mode: scale-to-fit; display: none;" />
+                        <ui:Label tabindex="-1" text="=" parse-escape-sequences="true" display-tooltip-when-elided="true" style="-unity-text-align: middle-center; -unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; font-size: 100px; color: rgb(58, 50, 166);" />
+                        <ui:VisualElement style="flex-grow: 1; width: 170px; height: 170px; background-image: url(&apos;project://database/Assets/Art/Sprites/Game/Balls/3.png?fileID=21300000&amp;guid=80447bc93a82445498e1e3533fca66ee&amp;type=3#3&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                    </ui:VisualElement>
+                    <ui:Label tabindex="-1" text="Collide planets and get improved ones" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_message_2" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; font-size: 37px; white-space: normal; -unity-text-align: upper-center; color: rgb(58, 50, 166);" />
+                </ui:VisualElement>
+                <ui:Button text="Continue" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_continue" class="window-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

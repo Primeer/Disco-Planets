@@ -34,6 +34,7 @@ namespace Presenter
             EventBus.MainBallMerged += OnMainBallMerged;
             model.ScoreChanged += view.AddDeltaScore;
             model.BestScoreChanged += OnBestScoreChanged;
+            model.ScoreReset += OnScoreReset;
         }
 
         public void Start()
@@ -48,6 +49,7 @@ namespace Presenter
             EventBus.MainBallMerged -= OnMainBallMerged;
             model.ScoreChanged -= view.AddDeltaScore;
             model.BestScoreChanged -= OnBestScoreChanged;
+            model.ScoreReset -= OnScoreReset;
         }
 
         private void OnBestScoreChanged(int score)
@@ -65,6 +67,11 @@ namespace Presenter
         private void OnMainBallMerged()
         {
             OnBallsMerged(levelModel.GetMainBallScore(), mainBallPosition);
+        }
+
+        private void OnScoreReset()
+        {
+            view.SetScore(0);
         }
     }
 }

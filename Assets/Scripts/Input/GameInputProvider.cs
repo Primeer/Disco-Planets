@@ -40,6 +40,8 @@ namespace Input
             view.PointerDown += OnPointerDown;
             view.PointerMove += OnPointerMove;
             view.PointerUp += OnPointerUp;
+            EventBus.GamePaused += OnGamePaused;
+            EventBus.GameResumed += OnGameResumed;
         }
 
         public void Dispose()
@@ -47,6 +49,18 @@ namespace Input
             view.PointerDown -= OnPointerDown;
             view.PointerMove -= OnPointerMove;
             view.PointerUp -= OnPointerUp;
+            EventBus.GamePaused -= OnGamePaused;
+            EventBus.GameResumed -= OnGameResumed;
+        }
+
+        private void OnGamePaused()
+        {
+            EnableInput(false);
+        }
+        
+        private void OnGameResumed()
+        {
+            EnableInput(true);
         }
         
         private void OnPointerDown(Vector2 screenPosition)
@@ -68,8 +82,6 @@ namespace Input
             {
                 return;
             }
-            
-            DebugService.Log(screenPosition.ToString());
             
             var position = GetPointerPosition();
             EventBus.PointerPressed?.Invoke(position);

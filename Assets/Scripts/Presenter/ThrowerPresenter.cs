@@ -26,6 +26,7 @@ namespace Presenter
             EventBus.PointerPressed += OnPointerPressed;
             EventBus.PointerReleased += OnPointerReleased;
             EventBus.LevelChanged += OnLevelChanged;
+            EventBus.GamePaused += OnGamePaused;
         }
 
         public void Dispose()
@@ -33,8 +34,14 @@ namespace Presenter
             EventBus.PointerPressed -= OnPointerPressed;
             EventBus.PointerReleased -= OnPointerReleased;
             EventBus.LevelChanged -= OnLevelChanged;
+            EventBus.GamePaused -= OnGamePaused;
             
             model.Dispose();
+        }
+
+        private void OnGamePaused()
+        {
+            view.SetAimLine(false);
         }
 
         private void OnPointerPressed(Vector2 position)

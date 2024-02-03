@@ -1,70 +1,67 @@
 ﻿using System;
-using System.Threading;
-using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Boosters.Types
 {
-    public class AbstractBooster
+    public class AbstractBooster : IDisposable
     {
-        private CancellationTokenSource cooldownCts;
-        private BoosterState state;
+        private BoosterType type;
         
         protected int Index;
 
-        public Action Ready;
-        public Action Finished;
+        public BoosterState State;
+        public Action<BoosterType> Ready;
+        public Action<BoosterType> Finished;
 
         
-        public void Initialize(float cooldown, int idx)
+        public void Initialize(BoosterType type, int index)
         {
-            Index = idx;
-            state = BoosterState.Cooldown;
+            this.type = type;
+            Index = index;
+        }
+
+        public void Reset()
+        {
+            if (State == BoosterState.Active)
+            {
+                Deactivate();
+            }
             
-            cooldownCts?.Cancel();
-            cooldownCts = new CancellationTokenSource();
-            CooldownAsync(cooldown, cooldownCts.Token).Forget();
+            State = BoosterState.Disabled;
+        }
+
+        public void Enable()
+        {
+            State = BoosterState.Ready;
+            Ready?.Invoke(type);
         }
         
         public void Activate()
         {
-            if (state == BoosterState.Ready)
+            if (State == BoosterState.Ready)
             {
-                state = BoosterState.Active;
+                State = BoosterState.Active;
                 OnActivate();
             }
         }
 
         protected void Finish()
         {
-            cooldownCts?.Cancel();
-            cooldownCts?.Dispose();
-            cooldownCts = null;
-            
-            Finished?.Invoke();
-            Finished = null;
-        }
-
-        private async UniTaskVoid CooldownAsync(float cooldown, CancellationToken token)
-        {
-            try
-            {
-                await UniTask.Delay(TimeSpan.FromSeconds(cooldown), cancellationToken: token);
-                
-                if (state == BoosterState.Cooldown)
-                {
-                    state = BoosterState.Ready;
-                    Ready?.Invoke();
-                    Ready = null;
-                }
-            }
-            catch (OperationCanceledException _) { }
-            catch (Exception e)
-            {
-                Debug.LogError(e);
-            }
+            State = BoosterState.Disabled;
+            Finished?.Invoke(type);
         }
         
-        protected virtual void OnActivate() {}
+        protected virtual void OnActivate() { }
+
+        private void Deactivate()
+        {
+            OnDeactivate();
+        }
+
+        protected virtual void OnDeactivate() { }
+        
+        public void Dispose()
+        {
+            Finished = null;
+        }
     }
 }

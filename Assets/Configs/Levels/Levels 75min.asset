@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a934320953457288022ed3e12229dc, type: 3}
+  m_Name: Levels 75min
+  m_EditorClassIdentifier: 
+  levels:
+  - minValue: 0
+    maxValue: 6
+    maxThrowerValue: 3
+    score: 100
+    features: 
+  - minValue: 0
+    maxValue: 7
+    maxThrowerValue: 3
+    score: 200
+    features: 02000000
+  - minValue: 0
+    maxValue: 8
+    maxThrowerValue: 3
+    score: 300
+    features: 03000000
+  - minValue: 1
+    maxValue: 9
+    maxThrowerValue: 4
+    score: 400
+    features: 00000000
+  - minValue: 1
+    maxValue: 10
+    maxThrowerValue: 4
+    score: 500
+    features: 01000000
+  - minValue: 2
+    maxValue: 11
+    maxThrowerValue: 5
+    score: 600
+    features: 
+  - minValue: 2
+    maxValue: 12
+    maxThrowerValue: 5
+    score: 700
+    features: 
+  - minValue: 3
+    maxValue: 13
+    maxThrowerValue: 6
+    score: 800
+    features: 

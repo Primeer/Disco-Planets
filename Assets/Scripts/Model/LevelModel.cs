@@ -1,4 +1,5 @@
 ﻿using Configs.Levels;
+using UnityEngine;
 
 namespace Model
 {
@@ -8,9 +9,9 @@ namespace Model
     public class LevelModel
     {
         private readonly LevelConfig config;
-        private int level;
+        public int Level { get; set; }
 
-        
+
         public LevelModel(LevelConfig config)
         {
             this.config = config;
@@ -18,28 +19,36 @@ namespace Model
         
         public void SetLevel(int lvl)
         {
-            level = lvl;
-            EventBus.LevelChanged?.Invoke(level);
+            Level = lvl;
+            Debug.Log($"Level changed: {Level}");
+            EventBus.LevelChanged?.Invoke(Level);
         }
 
         public void NextLevel()
         {
-            SetLevel(level + 1);
+            if (IsLastLevel())
+            {
+                SetLevel(Level);
+            }
+            else
+            {
+                SetLevel(Level + 1);
+            }
+        }
+
+        public void ResetLevels()
+        {
+            SetLevel(0);
         }
 
         public int GetMainBallScore()
         {
-            return config.GetLevelData(level).Score;
+            return config.GetLevelData(Level).Score;
         }
 
         public bool IsLastLevel()
         {
-            return level + 1 == config.LevelsCount;
-        }
-
-        public bool IsNextLevelLast()
-        {
-            return level + 2 == config.LevelsCount;
+            return Level + 1 == config.LevelsCount;
         }
     }
 }

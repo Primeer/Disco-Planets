@@ -1,34 +1,100 @@
 ﻿using System;
-using Input;
-using UnityEngine;
-using View;
+using System.Collections.Generic;
+using Configs.Windows;
+using Presenter.Windows;
+using UnityEngine.UIElements;
+using VContainer;
+using VContainer.Unity;
 
 namespace Service
 {
     /// <summary>
     /// Управляет отображением окон
     /// </summary>
-    public class ScreenDispatcher
+    public class ScreenDispatcher : IStartable
     {
-        private readonly GameInputProvider inputProvider;
-        private readonly WinWindow winWindow;
+        private const string WindowsRootName = "windows";
 
+        private readonly Dictionary<WindowType, WindowPresenter> windowsPresentersByTypes;
+        private readonly UIDocument uiDocument;
+        private readonly GameService gameService;
+        private readonly VibrationService vibrationService;
+        private readonly IObjectResolver container;
+        private readonly Dictionary<WindowType, WindowPresenter> presenters = new();
         
-        public ScreenDispatcher(WinWindow winWindow, GameInputProvider inputProvider)
+        private VisualElement windowsRoot;
+        private int openWindowsCount;
+        
+        public ScreenDispatcher(IObjectResolver container, UIDocument uiDocument, WindowsConfig windowsConfig, 
+            VibrationService vibrationService, GameService gameService)
         {
-            this.winWindow = winWindow;
-            this.inputProvider = inputProvider;
+            this.container = container;
+            this.uiDocument = uiDocument;
+            this.vibrationService = vibrationService;
+            this.gameService = gameService;
+            windowsPresentersByTypes = windowsConfig.Presenters;
         }
 
-        public void ShowWinWindow(int score, int bestScore, bool withMessage, Action onResume = default)
+        public void Start()
         {
-            inputProvider.EnableInput(false);
-            Time.timeScale = 0;
+            windowsRoot = uiDocument.rootVisualElement.Q<VisualElement>(WindowsRootName);
+        }
+
+        public void ShowWindow(WindowType type, Action onResume = null)
+        {
+            if (!presenters.TryGetValue(type, out var presenter))
+            {
+                presenter = SpawnWindow(type);
+            }
+
+            presenter.OnResume = onResume;
+            // presenter.ContinueButtonClicked = () => CloseWindow(presenter);
+
+            OnWindowOpen(presenter);
+        }
+
+        private WindowPresenter SpawnWindow(WindowType type)
+        {
+            if (!windowsPresentersByTypes.TryGetValue(type, out var presenter))
+            {
+                presenter = new WindowPresenter();
+            }
             
-            onResume += () =>  inputProvider.EnableInput(true);
-            onResume += () => Time.timeScale = 1;
+            container.Inject(presenter);
+            presenter.Initialize(type, windowsRoot, this);
+            presenters.Add(type, presenter);
             
-            winWindow.ShowWindow(score, bestScore, withMessage, onResume);
+            return presenter; 
+        }
+        
+        private void OnWindowOpen(WindowPresenter presenter)
+        {
+            openWindowsCount++;
+            CheckWindowsCount();
+            
+            presenter.WindowElement.BringToFront();
+            presenter.Show();
+        }
+
+        public void CloseWindow(WindowPresenter presenter)
+        {
+            vibrationService.PlayVibration();
+            presenter.Hide();
+            
+            openWindowsCount--;
+            CheckWindowsCount();
+        }
+
+        private void CheckWindowsCount()
+        {
+            if (openWindowsCount == 0)
+            {
+                gameService.UnfreezeGame();
+            }
+            else
+            {
+                gameService.FreezeGame();
+            }
         }
     }
 }

@@ -1,0 +1,24 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Window.uss?fileID=7433441132597879392&amp;guid=cbdef2d237097604cb6d8d40355671fd&amp;type=3#Window" />
+    <Style src="project://database/Assets/UI/Uss/Tutorial.uss?fileID=7433441132597879392&amp;guid=7909917b42a45df41932ef1a757a33ef&amp;type=3#Tutorial" />
+    <ui:VisualElement name="overlay" style="position: absolute; left: 0; top: 0; align-items: center; justify-content: center; width: 100%; height: 100%;">
+        <ui:VisualElement name="background" class="window-background">
+            <ui:VisualElement name="panel" picking-mode="Ignore" class="window-panel">
+                <ui:VisualElement name="panel_header" picking-mode="Ignore" class="window-header">
+                    <ui:Label tabindex="-1" text="бомба" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_title" picking-mode="Ignore" class="window-title" />
+                </ui:VisualElement>
+                <ui:VisualElement name="panel_body" style="align-items: center; flex-grow: 1; width: 100%; justify-content: space-around;">
+                    <ui:VisualElement class="booster-icon" />
+                    <ui:Label tabindex="-1" text="взрываясь, увеличивает уровень соседних планет" parse-escape-sequences="true" display-tooltip-when-elided="true" name="text_message" class="window-text-body booster-description" />
+                    <ui:VisualElement style="flex-direction: row;">
+                        <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Art/Sprites/UI/Tutorial/image_bomb_tutor_1.png?fileID=2800000&amp;guid=b4f56e00fdf20594c90184d5247b8089&amp;type=3#image_bomb_tutor_1&apos;); -unity-background-scale-mode: scale-and-crop; width: 300px; height: 300px; border-top-left-radius: 100px; border-top-right-radius: 100px; border-bottom-right-radius: 100px; border-bottom-left-radius: 100px; margin-right: 20px;" />
+                        <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Art/Sprites/UI/Tutorial/image_bomb_tutor_2.png?fileID=2800000&amp;guid=fea7714a70d7ee54b9ad0b2336fc8214&amp;type=3#image_bomb_tutor_2&apos;); -unity-background-scale-mode: scale-and-crop; width: 300px; height: 300px; border-top-left-radius: 100px; border-top-right-radius: 100px; border-bottom-right-radius: 100px; border-bottom-left-radius: 100px;" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement style="margin-bottom: 15%; margin-top: 10px;">
+                    <ui:Button text="Continue" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_continue" class="window-button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

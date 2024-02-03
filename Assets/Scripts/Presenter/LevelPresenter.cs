@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Configs.Windows;
 using Cysharp.Threading.Tasks;
 using Model;
 using Service;
@@ -14,8 +15,7 @@ namespace Presenter
         private const string SaveKey = "level";
         
         private readonly LevelModel levelModel;
-        private readonly ChangeLevelModel changeLevelModel;
-        private readonly ScoreModel scoreModel;
+        private readonly LevelEffectsService levelEffectsService;
         private readonly LevelView view;
         private readonly ScreenDispatcher screenDispatcher;
         private readonly BallView mainBall;
@@ -23,14 +23,13 @@ namespace Presenter
         private CancellationTokenSource effectsCts;
         
 
-        public LevelPresenter(LevelView view, LevelModel levelModel, ChangeLevelModel changeLevelModel, 
-            ScreenDispatcher screenDispatcher, SceneContext sceneContext, ScoreModel scoreModel)
+        public LevelPresenter(LevelView view, LevelModel levelModel, LevelEffectsService levelEffectsService, 
+             SceneContext sceneContext, ScreenDispatcher screenDispatcher)
         {
             this.view = view;
             this.levelModel = levelModel;
-            this.changeLevelModel = changeLevelModel;
+            this.levelEffectsService = levelEffectsService;
             this.screenDispatcher = screenDispatcher;
-            this.scoreModel = scoreModel;
             mainBall = sceneContext.MainBall;
         }
 
@@ -64,11 +63,6 @@ namespace Presenter
 
         private void OnMainBallMerged()
         {
-            if (levelModel.IsLastLevel())
-            {
-                return;
-            }
-            
             effectsCts?.Cancel();
             effectsCts = new CancellationTokenSource();
             PlayEffectsAsync(effectsCts.Token).Forget();
@@ -76,15 +70,22 @@ namespace Presenter
 
         private async UniTaskVoid PlayEffectsAsync(CancellationToken token)
         {
-            mainBall.gameObject.SetActive(false);
-            await changeLevelModel.PlayLevelEndEffectsAsync(token);
-            screenDispatcher.ShowWinWindow(scoreModel.Score, scoreModel.BestScore, levelModel.IsNextLevelLast(), OnNextLevelWindowClose);
+            try
+            {
+                mainBall.gameObject.SetActive(false);
+                await levelEffectsService.PlayLevelEndEffectsAsync(token);
+                screenDispatcher.ShowWindow(WindowType.Win, OnNextLevelWindowClose);
+            }
+            catch (OperationCanceledException) { }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
         }
 
         private void OnNextLevelWindowClose()
         {
             levelModel.NextLevel();
-            mainBall.gameObject.SetActive(true);
         }
     }
 }

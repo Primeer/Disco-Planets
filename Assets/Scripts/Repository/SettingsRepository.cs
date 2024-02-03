@@ -8,6 +8,6 @@
         /// <summary>
         /// Включена ли вибрация
         /// </summary>
-        public bool IsVibrationEnabled { get; set; }
+        public bool IsVibrationEnabled { get; set; } = true;
     }
 }

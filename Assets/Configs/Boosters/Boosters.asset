@@ -16,9 +16,13 @@ MonoBehaviour:
   boosters:
   - type: 0
     sprite: {fileID: 21300000, guid: 3da3a5edd412d414eb7fd6ca8594031a, type: 3}
+    tutorialWindow: 4
   - type: 1
     sprite: {fileID: 21300000, guid: 9077bd7327df09044b1435a6ea6a5489, type: 3}
+    tutorialWindow: 5
   - type: 2
     sprite: {fileID: 21300000, guid: e5fcb13416aa7a24f81afeb086d23817, type: 3}
+    tutorialWindow: 6
   - type: 3
     sprite: {fileID: 21300000, guid: 95e298091acc2b54daae084e273e14ae, type: 3}
+    tutorialWindow: 7

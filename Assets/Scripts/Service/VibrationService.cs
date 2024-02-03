@@ -21,7 +21,7 @@ namespace Service
             vibrationAmplitude = commonConfig.VibrationAmplitude;
         }
 
-        public void PlayMergeVibration()
+        public void PlayVibration()
         {
             if (settings.IsVibrationEnabled)
             {

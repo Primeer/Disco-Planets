@@ -1,0 +1,13 @@
+.button-debug {
+    background-color: rgb(191, 0, 0);
+    -unity-font: url('project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&guid=c3eadac2d2d5947499e3e00b38c89265&type=3#NyashaSans');
+    -unity-font-definition: initial;
+    width: 100px;
+    height: 100px;
+    border-top-left-radius: 34px;
+    border-top-right-radius: 34px;
+    border-bottom-right-radius: 34px;
+    border-bottom-left-radius: 34px;
+    font-size: 20px;
+    white-space: normal;
+}

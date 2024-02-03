@@ -1,0 +1,23 @@
+.ball-image {
+    width: 130px;
+    height: 130px;
+}
+
+.ball-text {
+    -unity-font: url('project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&guid=c3eadac2d2d5947499e3e00b38c89265&type=3#NyashaSans');
+    -unity-font-definition: initial;
+    font-size: 60px;
+    color: rgb(58, 50, 166);
+}
+
+.booster-icon {
+    width: 200px;
+    height: 200px;
+    background-image: url('project://database/Assets/Art/Sprites/UI/Boosters/icon_booster_bomb.png?fileID=21300000&guid=9077bd7327df09044b1435a6ea6a5489&type=3#icon_booster_bomb');
+    -unity-background-scale-mode: scale-and-crop;
+}
+
+.booster-description {
+    margin-bottom: 20px;
+    -unity-text-align: upper-center;
+}

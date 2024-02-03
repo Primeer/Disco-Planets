@@ -7,7 +7,7 @@ using VContainer;
 namespace Boosters.Types
 {
     /// <summary>
-    /// Бустер "Максимальный шар"
+    /// Бустер "Наибольший шар"
     /// </summary>
     public class MaxBooster : AbstractBooster
     {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Configs.Windows;
 using UnityEngine;
 
 namespace Boosters.Configs
@@ -11,5 +12,8 @@ namespace Boosters.Configs
         
         [Tooltip("Иконка бустера")]
         public Sprite sprite;
+        
+        [Tooltip("Окно туториала")]
+        public WindowType tutorialWindow;
     }
 }

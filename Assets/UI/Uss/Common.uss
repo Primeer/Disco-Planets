@@ -7,7 +7,7 @@
 }
 
 .toggle-vibration-off {
-    background-image: url('project://database/Assets/Art/Sprites/Interface/vibto_off.png?fileID=21300000&guid=3d2efab97cec2ee41b5cc3fdfdd9e113&type=3#vibto_off');
+    background-image: url('project://database/Assets/Art/Sprites/UI/vibto_off.png?fileID=21300000&guid=3d2efab97cec2ee41b5cc3fdfdd9e113&type=3#vibto_off');
     -unity-background-scale-mode: scale-to-fit;
     background-color: rgba(0, 0, 0, 0);
     border-top-width: 0;
@@ -19,7 +19,7 @@
 }
 
 .toggle-vibration-on {
-    background-image: url('project://database/Assets/Art/Sprites/Interface/vibro_on.png?fileID=21300000&guid=7a3b3c9c713c6994db357829a48a009e&type=3#vibro_on');
+    background-image: url('project://database/Assets/Art/Sprites/UI/vibro_on.png?fileID=21300000&guid=7a3b3c9c713c6994db357829a48a009e&type=3#vibro_on');
 }
 
 .text-score {
@@ -32,7 +32,7 @@
 }
 
 .panel-booster {
-    background-image: url('project://database/Assets/Art/Sprites/image_booster_bg.png?fileID=21300000&guid=ca833a48c1721c8419a8a13f92dfa20f&type=3#image_booster_bg');
+    background-image: url('project://database/Assets/Art/Sprites/UI/image_booster_bg.png?fileID=21300000&guid=ca833a48c1721c8419a8a13f92dfa20f&type=3#image_booster_bg');
     -unity-background-scale-mode: scale-to-fit;
     width: 200px;
     height: 200px;
@@ -41,8 +41,10 @@
 .button-booster {
     flex-grow: 1;
     -unity-background-scale-mode: scale-to-fit;
-    background-color: rgba(0, 0, 0, 0);
     border-color: rgba(0, 0, 0, 0);
+    justify-content: flex-end;
+    align-items: flex-end;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .button-booster:active {
@@ -113,4 +115,59 @@
     top: 0;
     width: 100%;
     height: 100%;
+}
+
+.button-debug {
+    width: 100px;
+    height: 100px;
+    font-size: 20px;
+    white-space: normal;
+    -unity-font-style: bold;
+    -unity-font: url('project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&guid=c3eadac2d2d5947499e3e00b38c89265&type=3#NyashaSans');
+    -unity-font-definition: initial;
+    background-color: rgb(179, 30, 30);
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+    border-bottom-right-radius: 45px;
+    border-bottom-left-radius: 45px;
+}
+
+.panel-booster-activated {
+    -unity-background-image-tint-color: rgb(0, 255, 0);
+}
+
+.panel-booster-disabled {
+    -unity-background-image-tint-color: rgb(123, 123, 123);
+}
+
+.button-booster-disabled {
+    -unity-background-image-tint-color: rgb(84, 84, 84);
+    -unity-text-outline-width: 0;
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    color: rgba(27, 27, 27, 0);
+}
+
+.button-booster-ad {
+    -unity-background-image-tint-color: rgb(121, 121, 121);
+}
+
+.text-level {
+    -unity-font: url('project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&guid=c3eadac2d2d5947499e3e00b38c89265&type=3#NyashaSans');
+    font-size: 94px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    background-image: url('project://database/Assets/Art/Sprites/UI/space-level.png?fileID=21300000&guid=c14cf776d1dc6e04e8ac1405465533ed&type=3#space-level');
+    -unity-background-scale-mode: scale-to-fit;
+    -unity-font-definition: initial;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    -unity-text-outline-width: 1px;
+    flex-grow: 2;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
 }

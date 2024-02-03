@@ -38,7 +38,7 @@ namespace Boosters.Types
                 physicService.Explode(sceneContext.GravitationPoint, config.Force);
 
                 await UniTask.Delay(TimeSpan.FromSeconds(config.Delay), cancellationToken: token);
-
+                
                 Merge();
             }
             catch (OperationCanceledException _) { }

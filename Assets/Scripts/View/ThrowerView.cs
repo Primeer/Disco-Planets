@@ -46,7 +46,7 @@ namespace View
         private float GetAimLineLength()
         {
             Vector2 origin = aimLine.transform.position;
-            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.up, aimLineLength, LayerMask.GetMask("Default"));
+            RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.up, aimLineLength);
 
             if (hit.collider != null && hit.distance > 0)
             {

@@ -101,6 +101,16 @@ namespace Service
             view.SetWeight(weight);
         }
 
+        public void DeleteAllBalls()
+        {
+            var balls = new List<BallView>(repository.Views);
+            
+            foreach (var ball in balls)
+            {
+                ballFactory.DestroyBall(ball);
+            }
+        }
+
         private void DeleteBallsUnderValue(int value)   
         {
             Dictionary<BallView, int> balls = repository.Values.Where(pair => pair.Key.IsSimulated).ToDictionary(pair => pair.Key, pair => pair.Value);

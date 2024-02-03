@@ -1,4 +1,6 @@
 ﻿using System;
+using Service;
+using Service.Features;
 using UnityEngine;
 using View;
 
@@ -14,4 +16,9 @@ public class EventBus
         
     public static Action MainBallMerged;
     public static Action<int> LevelChanged;
+    
+    public static Action<FeatureEnum> FeatureOpened;
+    
+    public static Action GamePaused;
+    public static Action GameResumed;
 }

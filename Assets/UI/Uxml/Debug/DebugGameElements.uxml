@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Debug.uss?fileID=7433441132597879392&amp;guid=58df6552683d7dd479b7e65d4a573e1b&amp;type=3#Debug" />
+    <ui:VisualElement name="panel_debug" picking-mode="Ignore" style="flex-direction: column; justify-content: space-between; display: flex;">
+        <ui:Button text="Next Level" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_debug_next_level" class="button-debug" />
+        <ui:Button text="Clear Prefs" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_debug_clear_prefs" class="button-debug" />
+        <ui:Button text="Logs" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_debug_logs" class="button-debug" />
+        <ui:Button text="Open all" parse-escape-sequences="true" display-tooltip-when-elided="true" name="button_debug_features" class="button-debug" />
+        <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" picking-mode="Ignore" name="text_debug" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; font-size: 32px; display: none;" />
+        <ui:IntegerField label="VIbro" value="42" name="field_debug" style="-unity-font: url(&apos;project://database/Assets/UI/Fonts/NyashaSans.ttf?fileID=12800000&amp;guid=c3eadac2d2d5947499e3e00b38c89265&amp;type=3#NyashaSans&apos;); -unity-font-definition: initial; flex-direction: column; display: none;" />
+    </ui:VisualElement>
+</ui:UXML>

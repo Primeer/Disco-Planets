@@ -74,6 +74,7 @@ namespace Service
             
             if (value == maxBallValue)
             {
+                Debug.Log($"Main ball merged: {value}");
                 effectFactory.CreateMergeEffect(ball2.transform.position);
                 ballFactory.DestroyBall(ball2);
                 EventBus.MainBallMerged?.Invoke();
@@ -99,7 +100,7 @@ namespace Service
             Vector2 avgPosition = GetAvgPosition(ball1, ball2);
             Vector2 avgVelocity = GetAvgVelocity(ball1, ball2);
 
-            vibrationService.PlayMergeVibration();
+            vibrationService.PlayVibration();
             effectFactory.CreateMergeEffect(avgPosition);
                 
             ballFactory.DestroyBall(ball1);

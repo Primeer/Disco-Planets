@@ -33,6 +33,7 @@ namespace Presenter
         {
             int value = levelConfig.GetLevelData(level).MaxValue;
             valueService.SetBallValue(view, value);
+            view.gameObject.SetActive(true);
         }
     }
 }

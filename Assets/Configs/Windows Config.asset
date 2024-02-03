@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6350d0b151ad4a859a7f15b0e2674acf, type: 3}
+  m_Name: Windows Config
+  m_EditorClassIdentifier: 
+  windows:
+  - name: MergeTutorial
+    windowType: 1
+    uxml: {fileID: 9197481963319205126, guid: 43715afb4ebb48640928a01e91bd980c, type: 3}
+    localizationData:
+    - element: text_title
+      textId: 5
+    - element: text_message_1
+      textId: 6
+    - element: text_message_2
+      textId: 16
+    - element: button_continue
+      textId: 3
+  - name: Win
+    windowType: 2
+    uxml: {fileID: 9197481963319205126, guid: b5d61d3ef74d8d0409b4aa0623687595, type: 3}
+    localizationData:
+    - element: text_title
+      textId: 0
+    - element: text_score
+      textId: 1
+    - element: text_best_score
+      textId: 2
+    - element: text_message
+      textId: 4
+    - element: text_new_balls
+      textId: 19
+    - element: button_continue
+      textId: 3
+    - element: button_restart
+      textId: 22
+  - name: Logs
+    windowType: 0
+    uxml: {fileID: 9197481963319205126, guid: 0951cc3421f2378479ef46792c0613fb, type: 3}
+    localizationData:
+    - element: button_continue
+      textId: 3
+  - name: BallLevels
+    windowType: 3
+    uxml: {fileID: 9197481963319205126, guid: 4583bf2715ff01940972af3ce43da324, type: 3}
+    localizationData:
+    - element: text_title
+      textId: 7
+    - element: button_continue
+      textId: 3
+  - name: MaxBoosterTutorial
+    windowType: 4
+    uxml: {fileID: 9197481963319205126, guid: 65f0db7946e3b604992fb4a05db5e843, type: 3}
+    localizationData:
+    - element: text_title
+      textId: 10
+    - element: text_message
+      textId: 11
+    - element: button_continue
+      textId: 3
+  - name: BombBoosterTutorial
+    windowType: 5
+    uxml: {fileID: 9197481963319205126, guid: 3a0eff641b2d07d48b27a3cf8716bbfa, type: 3}
+    localizationData:
+    - element: text_title
+      textId: 12
+    - element: text_message
+      textId: 13
+    - element: button_continue
+      textId: 3
+  - name: QualityBoosterTutorial
+    windowType: 6
+    uxml: {fileID: 9197481963319205126, guid: 82a14d94e4ebc9844b29b34af11e063f, type: 3}
+    localizationData:
+    - element: text_title
+      textId: 14
+    - element: text_message
+      textId: 15
+    - element: text_before
+      textId: 17
+    - element: text_after
+      textId: 18
+    - element: button_continue
+      textId: 3
+  - name: MagnetBoosterTutorial
+    windowType: 7
+    uxml: {fileID: 9197481963319205126, guid: 2fe6776c27c690b459ac3e54a2a6bcca, type: 3}
+    localizationData:
+    - element: text_title
+      textId: 8
+    - element: text_message
+      textId: 9
+    - element: button_continue
+      textId: 3
+  - name: Settings
+    windowType: 8
+    uxml: {fileID: 9197481963319205126, guid: 556db24238329e04d89fb6744ce537ab, type: 3}
+    localizationData:
+    - element: text_title
+      textId: 20
+    - element: text_vibration
+      textId: 21
+    - element: button_continue
+      textId: 3
